@@ -24,9 +24,11 @@ public final class Main {
                 e.printStackTrace();
             }
 
-            System.out.println("Bem vindo ao programa de gestão de usuários!\n");
+            System.out.println("Bem vindo ao programa de gestão de usuários!");
+            System.out.println("--------------------------------------------\n");
             System.out.println("1 - Listar usuários cadastrados.");
             System.out.println("2 - Buscar usuário pelo ID.");
+            System.out.println("3 - Cadastrar um novo usuário.");
             System.out.println("5 - Sair do programa.\n");
             System.out.println("");
             System.out.print("Por favor, digite a opção desejada: ");
@@ -63,13 +65,31 @@ public final class Main {
                         e.printStackTrace();
                     }
 
-                    System.out.print("Digite o ID do usuário: ");
-                    String id = scanner.nextLine();
-
                     try {
-                        usuarioController.buscarUsuario(id);
+                        usuarioController.buscarUsuario();
                     } catch (Exception e) {
                         System.out.println("\nErro ao buscar o usuário: " + e);
+                    }
+
+                    System.out.print("\nAperte Enter para retornar ao menu...");
+                    scanner.nextLine();
+                    break;
+                case 3:
+                    try {
+                        if (System.getProperty("os.name").contains("Windows")) {
+                            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                        } else {
+                            System.out.print("\033[H\033[2J");
+                            System.out.flush();
+                        }
+                    } catch (IOException | InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    try {
+                        usuarioController.cadastrarUsuario();
+                    } catch (Exception e) {
+                        System.out.println("\nErro no cadastro do usuário: " + e);
                     }
 
                     System.out.print("\nAperte Enter para retornar ao menu...");

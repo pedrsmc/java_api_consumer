@@ -31,4 +31,13 @@ public class UsuarioServices {
         return usuario;
     }
 
+    public Usuario cadastrarUsuario(Usuario usuario) throws Exception {
+        String json = mapper.writeValueAsString(usuario);
+
+        String resposta = usuarioRepository.cadastrarUsuario(json);
+
+        Usuario usuarioCriado = mapper.readValue(resposta, Usuario.class);
+
+        return usuarioCriado;
+    }
 }
