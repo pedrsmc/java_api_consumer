@@ -45,4 +45,18 @@ public class UsuarioRepository {
 
         return response.body();
     }
+
+    public int removerUsuario(String id) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(API_BASE + "/usuarios/" + id))
+                .header("Content-Type", "application/json")
+                .DELETE()
+                .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        return response.statusCode();
+    }
 }

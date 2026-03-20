@@ -40,4 +40,10 @@ public class UsuarioServices {
 
         return usuarioCriado;
     }
+
+    public int removerUsuario(String id) throws Exception {
+        int resposta = usuarioRepository.removerUsuario(id);
+
+        return resposta;
+    }
 }
